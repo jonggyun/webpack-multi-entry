@@ -1,57 +1,11 @@
-# React Starter Kit v1
+# Webpack Multi Entry
 
-## How to use
+webpack-babel-multi-target-plugin를 활용한 multi output 구성
 
-`Git`을 설치하셨다면, 아래의 명령어를 이용하여 바로 사용하실 수 있습니다.
+모던 브라우저에서는 최신화된 자바스크립트 구문을 사용할수 있게 하고, IE에서는 예전 구문을 사용하게 된다.
 
-```
-git clone https://github.com/jonggyun/react-starter-kit-v1.git
-```
+<script>의 nomodule를 활용하여 IE에서 예전 자바스크리브 구문이 포함된 bundle를 실행.
 
-```
-yarn start
-```
+최신 구문을 사용하는 bundle이 이전 구문을 사용하는 bundle보다 사이즈가 작게 생성된다.
 
-http://localhost:3000 에서 확인하실 수 있습니다.
-
-## Packages
-
-- react ^16.8.6
-
-- react-dom ^16.8.6
-
-- styled-components ^4.3.1
-
-- node-sass ^4.12.0
-
-- webpack ^4.34.0
-
-- webpack-cli ^3.3.4
-
-- webpack-dev-server ^3.7.2
-
-- @babel/core ^7.4.5
-
-- @babel/plugin-proposal-class-properties ^7.4.4
-
-- @babel/preset-env ^7.4.5
-
-- @babel/preset-react ^7.0.0
-
-- babel-loader ^8.0.6
-
-- css-loader ^3.0.0
-
-- html-loader ^0.5.5
-
-- url-loader ^2.0.0
-
-- sass-loader ^7.1.0
-
-- style-loader ^0.23.1
-
-- clean-webpack-plugin ^3.0.0
-
-- html-webpack-plugin ^3.2.0
-
-- mini-css-extract-plugin ^0.7.0
+그 영향으로 최신 브라우저를 사용하는 이용자에게 보다 가벼운 서비스를 제공할 수 있게 된다.

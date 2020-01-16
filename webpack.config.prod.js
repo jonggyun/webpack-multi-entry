@@ -2,11 +2,13 @@ const path = require('path');
 const HtmlWebPackPlugin = require('html-webpack-plugin');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const { CleanWebpackPlugin } = require('clean-webpack-plugin');
+const BabelMultiTargetPlugin = require('webpack-babel-multi-target-plugin')
+  .BabelMultiTargetPlugin;
 
 module.exports = {
   entry: './src/index.js',
   output: {
-    filename: 'bundle.js',
+    filename: '[name].bundle.js',
     path: path.resolve(__dirname + '/build'),
   },
   devServer: {
@@ -20,7 +22,7 @@ module.exports = {
       {
         test: /\.(js|jsx)$/,
         exclude: '/node_modules',
-        use: ['babel-loader'],
+        use: BabelMultiTargetPlugin.loader(),
       },
       {
         test: /\.html$/,
@@ -58,5 +60,19 @@ module.exports = {
       filename: 'style.css',
     }),
     new CleanWebpackPlugin(),
+    new BabelMultiTargetPlugin({
+      normalizeModuleIds: true,
+      exclude: [/node_modules/],
+      babel: {
+        presetOptions: {
+          targets: {
+            browsers: ['last 2 versions', 'ie >= 11'],
+          },
+          useBuiltIns: 'usage',
+          corejs: 3,
+          shippedProposals: true,
+        },
+      },
+    }),
   ],
 };
